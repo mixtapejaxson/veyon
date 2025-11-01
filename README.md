@@ -53,7 +53,7 @@ for information on how to use Veyon.
 
 First grab the latest sources by cloning the Git repository and fetching all submodules:
 
-	git clone --recursive https://github.com/veyon/veyon.git && cd veyon
+	git clone --recursive https://github.com/mixtapejaxson/veyon.git && cd veyon
 
 
 ### Installing dependencies
