@@ -73,7 +73,7 @@ VeyonCore::VeyonCore( QCoreApplication* application, Component component, const 
 	m_userGroupsBackendManager( nullptr ),
 	m_networkObjectDirectoryManager( nullptr ),
 	m_component( component ),
-	m_applicationName( QStringLiteral( "Veyon" ) ),
+	m_applicationName( QStringLiteral( "eVeyon" ) ),
 	m_debugging( false )
 {
 	Q_ASSERT( application != nullptr );
@@ -216,9 +216,9 @@ QString VeyonCore::sessionIdEnvironmentVariable()
 
 void VeyonCore::setupApplicationParameters()
 {
-	QCoreApplication::setOrganizationName( QStringLiteral( "Veyon Solutions" ) );
+	QCoreApplication::setOrganizationName( QStringLiteral( "eVeyon Solutions" ) );
 	QCoreApplication::setOrganizationDomain( QStringLiteral( "veyon.io" ) );
-	QCoreApplication::setApplicationName( QStringLiteral( "Veyon" ) );
+	QCoreApplication::setApplicationName( QStringLiteral( "eVeyon" ) );
 
 	QCoreApplication::setAttribute( Qt::AA_ShareOpenGLContexts );
 
@@ -251,7 +251,7 @@ QString VeyonCore::applicationName()
 
 void VeyonCore::enforceBranding( QWidget *topLevelWidget )
 {
-	const auto appName = QStringLiteral( "Veyon" );
+	const auto appName = QStringLiteral( "eVeyon" );
 
 	const auto labels = topLevelWidget->findChildren<QLabel *>();
 	for( auto label : labels )

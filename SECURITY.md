@@ -11,4 +11,4 @@ Usually, only the latest stable release series is provided with security updates
 
 ## Reporting a Vulnerability
 
-If you have found a security-related bug in Veyon, please contact us via email at security@veyon.io to disclose the details about your findings. As soon as we learn about potential security vulnerabilities, we will work together to analyze and fix them as soon as possible.
+If you have found a security-related bug in eVeyon, please contact us via email at security@veyon.io to disclose the details about your findings. As soon as we learn about potential security vulnerabilities, we will work together to analyze and fix them as soon as possible.

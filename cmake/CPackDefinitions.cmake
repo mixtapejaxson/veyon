@@ -1,6 +1,6 @@
 # Basic information
 if(NOT CPACK_PACKAGE_NAME)
-	set(CPACK_PACKAGE_NAME "veyon")
+	set(CPACK_PACKAGE_NAME "eveyon")
 endif()
 set(CPACK_PACKAGE_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD}")
 
@@ -8,7 +8,7 @@ set(CPACK_PACKAGING_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 set(CPACK_PACKAGE_CONTACT "Tobias Junghans <tobydox@veyon.io>")
 set(CPACK_PACKAGE_HOMEPAGE "https://veyon.io")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Cross-platform computer control and classroom management")
-set(CPACK_PACKAGE_VENDOR "Veyon Solutions")
+set(CPACK_PACKAGE_VENDOR "eVeyon Solutions")
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
 set(CPACK_INCLUDE_TOPLEVEL_DIRECTORY TRUE)
@@ -18,11 +18,11 @@ set(CPACK_STRIP_FILES  TRUE)
 # DEB package
 if(${CMAKE_VERSION} VERSION_GREATER "3.15.0")
 	set(CPACK_DEBIAN_PACKAGE_DESCRIPTION
-"Veyon is a free and open source software for monitoring and controlling
-computers across multiple platforms. Veyon supports you in teaching in digital
+"eVeyon is a free and open source software for monitoring and controlling
+computers across multiple platforms. eVeyon supports you in teaching in digital
 learning environments, performing virtual trainings or giving remote support.
 
-The following features are available in Veyon:
+The following features are available in eVeyon:
 
 * Overview: monitor all computers in one or multiple locations or classrooms
 * Remote access: view or control computers to watch and support users

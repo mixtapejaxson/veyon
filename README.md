@@ -1,4 +1,4 @@
-# Veyon - Virtual Eye On Networks
+# eVeyon - enhanced Virtual Eye On Networks
 
 [![.github/workflows/build.yml](https://github.com/veyon/veyon/actions/workflows/build.yml/badge.svg?branch=4.5)](https://github.com/veyon/veyon/actions/workflows/build.yml)
 [![Latest stable release](https://img.shields.io/github/release/veyon/veyon.svg?maxAge=3600)](https://github.com/veyon/veyon/releases)
@@ -8,13 +8,13 @@
 [![license](https://img.shields.io/badge/license-GPLv2-green.svg)](LICENSE)
 
 
-## What is Veyon?
+## What is eVeyon?
 
-Veyon is a free and open source software for monitoring and controlling
-computers across multiple platforms. Veyon supports you in teaching in digital
+eVeyon is a free and open source software for monitoring and controlling
+computers across multiple platforms. eVeyon supports you in teaching in digital
 learning environments, performing virtual trainings or giving remote support.
 
-The following features are available in Veyon:
+The following features are available in eVeyon:
 
   * Overview: monitor all computers in one or multiple locations or classrooms
   * Remote access: view or control computers to watch and support users
@@ -30,24 +30,24 @@ The following features are available in Veyon:
 
 ## License
 
-Copyright (c) 2004-2025 Tobias Junghans / Veyon Solutions.
+Copyright (c) 2004-2025 Tobias Junghans / eVeyon Solutions.
 
 See the file COPYING for the GNU GENERAL PUBLIC LICENSE.
 
 
 ## Installation and configuration
 
-Please refer to the official Veyon Administrator Manual at https://docs.veyon.io/en/latest/admin/index.html
-for information on the installation and configuration of Veyon.
+Please refer to the official eVeyon Administrator Manual at https://docs.veyon.io/en/latest/admin/index.html
+for information on the installation and configuration of eVeyon.
 
 
 ## Usage
 
-Please refer to the official Veyon User Manual at https://docs.veyon.io/en/latest/user/index.html
-for information on how to use Veyon.
+Please refer to the official eVeyon User Manual at https://docs.veyon.io/en/latest/user/index.html
+for information on how to use eVeyon.
 
 
-## Veyon on Linux
+## eVeyon on Linux
 
 ### Downloading sources
 
@@ -129,7 +129,7 @@ For generating a package you can run
 
 	fakeroot make package
 
-Then you'll get something like veyon_x.y.z_arch.deb or veyon-x.y.z.arch.rpm
+Then you'll get something like eveyon_x.y.z_arch.deb or eveyon-x.y.z.arch.rpm
 
 Alternatively you can install the built binaries directly (not recommended for
 production systems) by running the following command as root:
@@ -142,20 +142,20 @@ A PKGBUILD can be found in the [AUR](https://aur.archlinux.org/packages/veyon/).
 
 ### PPA
 
-This PPA contains official Veyon packages for Ubuntu suitable for use both on desktop computers and ARM boards (e.g. Raspberry Pi). Even though only packages for LTS releases are available they should work for subsequent non-LTS releases as well.
+This PPA contains official eVeyon packages for Ubuntu suitable for use both on desktop computers and ARM boards (e.g. Raspberry Pi). Even though only packages for LTS releases are available they should work for subsequent non-LTS releases as well.
 
 	sudo add-apt-repository ppa:veyon/stable
 	sudo apt-get update
 
 ## Join development
 
-If you are interested in Veyon, its programming, artwork, testing or something like that, you're welcome to participate in the development of Veyon!
+If you are interested in eVeyon, its programming, artwork, testing or something like that, you're welcome to participate in the development of eVeyon!
 
 Before starting the implementation of a new feature, please always open an issue at https://github.com/veyon/veyon/issues to start a discussion about your intended implementation. There may be different ideas, improvements, hints or maybe an already ongoing work on this feature.
 
 ## Join translation team
 
-Veyon and its documentation are translated at the Transifex platform. Please go to https://www.transifex.com/veyon-solutions/veyon and join the corresponding translation team. Please DO NOT submit pull requests for modified translation files since this would require manual Transifex synchronizations on our side.
+eVeyon and its documentation are translated at the Transifex platform. Please go to https://www.transifex.com/veyon-solutions/veyon and join the corresponding translation team. Please DO NOT submit pull requests for modified translation files since this would require manual Transifex synchronizations on our side.
 
 ## More information
 
