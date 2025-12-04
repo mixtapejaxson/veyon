@@ -304,7 +304,7 @@ include(CPack)
 #
 
 message("\n"
-	"Veyon build summary\n"
+	"eVeyon build summary\n"
 	"--------------------\n"
 	"* Version                     : ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_BUILD} (${VERSION_STRING})\n"
 	"* Install prefix              : ${CMAKE_INSTALL_PREFIX}\n"

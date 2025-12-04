@@ -1,6 +1,6 @@
-.TH VEYON-CLI 1 2018-12-07 Veyon
+.TH VEYON-CLI 1 2018-12-07 eVeyon
 .SH NAME
-veyon-cli \- Veyon Command Line Interface
+veyon-cli \- eVeyon Command Line Interface
 .SH SYNOPSIS
 \fBveyon-cli\fP \fIhelp\fR
 
@@ -12,20 +12,20 @@ veyon-cli \- Veyon Command Line Interface
 
 .SH DESCRIPTION
 
-\fBVEYON-CLI\fR is a command line tool that in addition to the Veyon
+\fBVEYON-CLI\fR is a command line tool that in addition to the eVeyon
 Configurator allows various configuration adjustments, automated tasks
-and the use of some Veyon functions without graphical interaction. The
+and the use of some eVeyon functions without graphical interaction. The
 program is run either interactively on the command line or script
 controlled with usually elevated privileges.
 
-For administrative tasks, the Veyon Configurator and the command line
-tool Veyon Control are available. Veyon Control can be started via the
-command \fBveyon-cli\fR in the command line. If the Veyon installation
+For administrative tasks, the eVeyon Configurator and the command line
+tool eVeyon Control are available. eVeyon Control can be started via the
+command \fBveyon-cli\fR in the command line. If the eVeyon installation
 directory is not in the $PATH environment variable, you must first change
 to the installation directory or prepend the directory to the program
 name.
 
-Veyon Control falls into various control modules. For each module a
+eVeyon Control falls into various control modules. For each module a
 set of commands is available.
 
 Available modules are:
@@ -52,7 +52,7 @@ Remote view or control a computer
 
 .TP
 \fIservice\fR
-Commands for configuring and controlling Veyon Service
+Commands for configuring and controlling eVeyon Service
 
 .TP
 \fIshell\fR
@@ -115,7 +115,7 @@ Available commands for the config module are:
 
 .TP
 .I clear
-Clear system-wide Veyon configuration. This command resets the entire
+Clear system-wide eVeyon configuration. This command resets the entire
 local configuration by deleting all configuration keys. Use this command
 to recreate a defined state before importing another configuration:
 
@@ -171,7 +171,7 @@ value must be passed as additional arguments:
 .TP
 .I unset
 Unset (remove) given configuration key. This command deletes a single
-configuration key resulting in Veyon using the internal index:`default
+configuration key resulting in eVeyon using the internal index:`default
 value for this key. The name of the key must be passed as an additional
 argument:
 
@@ -180,7 +180,7 @@ argument:
 .TP
 .I upgrade
 Upgrade and save configuration of program and plugins. With this command
-the configuration of Veyon and all plugins can be updated and saved. This
+the configuration of eVeyon and all plugins can be updated and saved. This
 may be necessary if settings or configuration formats have changed due to
 program or plugin updates.
 
@@ -220,9 +220,9 @@ system integration.
 
 .SH NETWORKOBJECTS MODULE
 
-Veyon provides a built-in network object directory that can be used when
+eVeyon provides a built-in network object directory that can be used when
 no LDAP server is available. This network object directory can be managed
-in the Veyon Configurator as well as on the command line. Certain
+in the eVeyon Configurator as well as on the command line. Certain
 operations such as CSV import are currently only available on the command
 line. For most commands, a detailed description with examples is
 available in the command-specific help. The following commands can be
@@ -280,7 +280,7 @@ in it are also removed.
 
 The remoteaccess module provides functions for a graphical remote access
 to computers. These are the same function that can be accessed from the
-Veyon Master. For example, the function provided by the command line tool
+eVeyon Master. For example, the function provided by the command line tool
 can be used to create a program shortcut for direct access to a
 particular computer.
 
@@ -303,39 +303,39 @@ address (and optionally the TCP port) has to be passed as an argument:
 
 .SH SERVICE MODULE
 
-The local Veyon Service can be controlled using the service module.
+The local eVeyon Service can be controlled using the service module.
 
 
 .TP
 .I register
-This command registers the Veyon Service in the operating system as a
+This command registers the eVeyon Service in the operating system as a
 service so that it starts automatically when the computer starts up.
 
     \fBveyon-cli\fR service register
 .TP
 .I unregister
 This command removes the service registration in the operating system so
-that the Veyon Service will not start automatically on startup.
+that the eVeyon Service will not start automatically on startup.
 
     \fBveyon-cli\fR service unregister
 .TP
 .I start
-This command starts the Veyon Service.
+This command starts the eVeyon Service.
 
     \fBveyon-cli\fR service start
 .TP
 .I stop
-This command stops the Veyon Service.
+This command stops the eVeyon Service.
 
     \fBveyon-cli\fR service stop
 .TP
 .I restart
-This command restarts the Veyon Service.
+This command restarts the eVeyon Service.
 
     \fBveyon-cli\fR service restart
 .TP
 .I status
-This command queries and displays the status of the Veyon Service.
+This command queries and displays the status of the eVeyon Service.
 
     \fBveyon-cli\fR service status
 
@@ -366,6 +366,6 @@ veyon-service(1), veyon-master(1), veyon-configurator(1)
 https://veyon.io/
 
 .SH AUTHOR
-Veyon has been written by Tobias Junghans.
+eVeyon has been written by Tobias Junghans.
 .PP
 This manual page has been written by Tobias Junghans and Mike Gabriel.

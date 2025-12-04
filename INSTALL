@@ -1,24 +1,24 @@
-INSTALLING AND SETTING UP VEYON FOR USE
-=======================================
+INSTALLING AND SETTING UP EVEYON FOR USE
+========================================
 
 Please note that all instructions in this file apply to the Linux version of
-Veyon. Users of the Windows version of Veyon should run the installer which will
-guide you through the installation. Afterwards the graphical Veyon Configurator
-helps to set up Veyon.
+eVeyon. Users of the Windows version of eVeyon should run the installer which will
+guide you through the installation. Afterwards the graphical eVeyon Configurator
+helps to set up eVeyon.
 
-For further information you can also take a look at Veyon administrator manual:
+For further information you can also take a look at eVeyon administrator manual:
 
 	http://docs.veyon.io/en/latest/admin/index.html
 
 
-Installing Veyon
-----------------
+Installing eVeyon
+-----------------
 
 Requirements:
 
 First you should download the necessary packages depending on your
 Linux distribution. If there're no packages for your distribution,
-try to build Veyon yourself. See according section in README file
+try to build eVeyon yourself. See according section in README file
 for details.
 
 If there're unfulfilled requirements, your package management system (dpkg,
@@ -28,21 +28,21 @@ RPM etc.) will complain about it.
 Installing:
 
 First you have to install the necessary packages on your computer(s).
-On clients you only have to install the packages veyon:
+On clients you only have to install the packages eveyon:
 
 on DPKG-based systems:
 
-        dpkg -i  veyon...deb
+        dpkg -i  eveyon...deb
 
 on RPM-based systems:
 
-	rpm -i  veyon...rpm
+	rpm -i  eveyon...rpm
 
 Of course, if your linux distribution has available such package you can install it from repositories:
 
-	apt install veyon
+	apt install eveyon
 
-	dnf install veyon
+	dnf install eveyon
 
 
 Essentially, there are 3 main apps in package:
@@ -57,10 +57,10 @@ On clients computers remove veyon-master if you installed it.
 
 
 
-Setup a Veyon client
---------------------
+Setup a eVeyon client
+---------------------
 
-On clients you have to make sure that the Veyon Service is being started when
+On clients you have to make sure that the eVeyon Service is being started when
 either X is started or a user logs on. There're several methods to achieve this
 (this is why it's not done automatically when installing the package):
 
@@ -85,7 +85,7 @@ example:
 You should see something like "RFB 003.008".
 
 
-Setting up and configuring Veyon
+Setting up and configuring eVeyon
 ---------------------------------
 
-Please refer to the official Veyon Administrator Manual at http://docs.veyon.io/en/latest/admin/index.html
+Please refer to the official eVeyon Administrator Manual at http://docs.veyon.io/en/latest/admin/index.html

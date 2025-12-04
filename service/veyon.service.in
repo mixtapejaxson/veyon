@@ -1,5 +1,5 @@
 [Unit]
-Description=Veyon Service
+Description=eVeyon Service
 After=network-online.target dbus.service systemd-logind.service
 Wants=network-online.target
 Requires=dbus.service systemd-logind.service
