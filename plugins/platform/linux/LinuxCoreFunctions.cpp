@@ -194,6 +194,7 @@ void LinuxCoreFunctions::restoreScreenSaverSettings()
 	auto display = XOpenDisplay( nullptr );
 	if( display == nullptr )
 	{
+		vDebug() << "Could not open X11 display for screen saver restoration";
 		return;
 	}
 

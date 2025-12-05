@@ -92,6 +92,7 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 	auto display = XOpenDisplay( nullptr );
 	if( display == nullptr )
 	{
+		vDebug() << "Could not open X11 display for keyboard mapping manipulation";
 		return;
 	}
 
@@ -118,8 +119,15 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 void LinuxInputDeviceFunctions::restoreKeyMapTable()
 {
 	Display* display = XOpenDisplay( nullptr );
-	if( display == nullptr || m_origKeyTable == nullptr )
+	if( display == nullptr )
 	{
+		vDebug() << "Could not open X11 display for keyboard mapping restoration";
+		return;
+	}
+
+	if( m_origKeyTable == nullptr )
+	{
+		XCloseDisplay( display );
 		return;
 	}
 
