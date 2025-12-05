@@ -142,10 +142,11 @@ bool WaylandPortalVncServer::initPortalSession()
 {
 	vDebug() << "Initializing xdg-desktop-portal session for Wayland screen capture";
 
-	QDBusInterface screenCast( PortalDesktopService,
-							   PortalObjectPath,
-							   PortalScreenCastInterface,
-							   QDBusConnection::sessionBus() );
+	// Explicitly construct QString from C strings to avoid deleted ctor in Qt6
+	QDBusInterface screenCast(QString::fromUtf8(PortalDesktopService),
+							   QString::fromUtf8(PortalObjectPath),
+							   QString::fromUtf8(PortalScreenCastInterface),
+							   QDBusConnection::sessionBus());
 
 	if( screenCast.isValid() == false )
 	{
@@ -158,8 +159,9 @@ bool WaylandPortalVncServer::initPortalSession()
 
 	// Create session options
 	QVariantMap sessionOptions;
-	sessionOptions[QStringLiteral("handle_token")] = sessionToken;
-	sessionOptions[QStringLiteral("session_handle_token")] = sessionToken;
+	// Convert QStringBuilder expressions to a concrete QString before assigning to QVariant
+	sessionOptions[QStringLiteral("handle_token")] = QString(sessionToken);
+	sessionOptions[QStringLiteral("session_handle_token")] = QString(sessionToken);
 
 	// Call CreateSession
 	QDBusReply<QDBusObjectPath> reply = screenCast.call( QStringLiteral("CreateSession"), sessionOptions );
@@ -254,10 +256,11 @@ bool WaylandPortalVncServer::startScreenCast()
 
 	vDebug() << "Starting screen cast via portal";
 
-	QDBusInterface screenCast( PortalDesktopService,
-							   PortalObjectPath,
-							   PortalScreenCastInterface,
-							   QDBusConnection::sessionBus() );
+	// Explicitly construct QString from C strings to avoid deleted ctor in Qt6
+	QDBusInterface screenCast(QString::fromUtf8(PortalDesktopService),
+							   QString::fromUtf8(PortalObjectPath),
+							   QString::fromUtf8(PortalScreenCastInterface),
+							   QDBusConnection::sessionBus());
 
 	if( screenCast.isValid() == false )
 	{
