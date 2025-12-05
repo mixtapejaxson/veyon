@@ -43,8 +43,19 @@ public:
 
 	void sendString( const QString& string );
 
+	bool isWaylandSession() const;
+
 private:
-	Display* m_display;
-	FakeKey* m_fakeKeyHandle;
+	// X11-specific input methods
+	void pressAndReleaseKeyX11( uint32_t keysym );
+	void pressAndReleaseKeyX11( const QByteArray& utf8Data );
+
+	// Wayland-specific input methods (via RemoteDesktop portal)
+	void pressAndReleaseKeyWayland( uint32_t keysym );
+	void pressAndReleaseKeyWayland( const QByteArray& utf8Data );
+
+	Display* m_display{nullptr};
+	FakeKey* m_fakeKeyHandle{nullptr};
+	bool m_isWayland{false};
 
 };

@@ -4,6 +4,7 @@ endif()
 
 if(VEYON_BUILD_LINUX)
 	add_subdirectory(x11vnc-builtin)
+	add_subdirectory(wayland-portal)
 endif()
 
 add_subdirectory(external)
