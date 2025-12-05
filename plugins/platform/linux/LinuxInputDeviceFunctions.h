@@ -40,8 +40,15 @@ public:
 	KeyboardShortcutTrapper* createKeyboardShortcutTrapper( QObject* parent ) override;
 
 private:
+	bool isWaylandSession() const;
+
+	// X11-specific methods
 	void setEmptyKeyMapTable();
 	void restoreKeyMapTable();
+
+	// Wayland-specific methods
+	void enableInputDevicesWayland();
+	void disableInputDevicesWayland();
 
 	bool m_inputDevicesDisabled{false};
 	void* m_origKeyTable{nullptr};

@@ -22,6 +22,8 @@
  *
  */
 
+#include <QProcessEnvironment>
+
 #include "PlatformServiceFunctions.h"
 #include "LinuxInputDeviceFunctions.h"
 #include "LinuxKeyboardShortcutTrapper.h"
@@ -29,11 +31,24 @@
 #include <X11/XKBlib.h>
 
 
+bool LinuxInputDeviceFunctions::isWaylandSession() const
+{
+	return QProcessEnvironment::systemEnvironment().contains( QStringLiteral("WAYLAND_DISPLAY") );
+}
+
+
 void LinuxInputDeviceFunctions::enableInputDevices()
 {
 	if( m_inputDevicesDisabled )
 	{
-		restoreKeyMapTable();
+		if( isWaylandSession() )
+		{
+			enableInputDevicesWayland();
+		}
+		else
+		{
+			restoreKeyMapTable();
+		}
 
 		m_inputDevicesDisabled = false;
 	}
@@ -45,7 +60,14 @@ void LinuxInputDeviceFunctions::disableInputDevices()
 {
 	if( m_inputDevicesDisabled == false )
 	{
-		setEmptyKeyMapTable();
+		if( isWaylandSession() )
+		{
+			disableInputDevicesWayland();
+		}
+		else
+		{
+			setEmptyKeyMapTable();
+		}
 
 		m_inputDevicesDisabled = true;
 	}
@@ -68,6 +90,12 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 	}
 
 	auto display = XOpenDisplay( nullptr );
+	if( display == nullptr )
+	{
+		vDebug() << "Could not open X11 display for keyboard mapping manipulation";
+		return;
+	}
+
 	XDisplayKeycodes( display, &m_keyCodeMin, &m_keyCodeMax );
 	m_keyCodeCount = m_keyCodeMax - m_keyCodeMin;
 
@@ -91,6 +119,17 @@ void LinuxInputDeviceFunctions::setEmptyKeyMapTable()
 void LinuxInputDeviceFunctions::restoreKeyMapTable()
 {
 	Display* display = XOpenDisplay( nullptr );
+	if( display == nullptr )
+	{
+		vDebug() << "Could not open X11 display for keyboard mapping restoration";
+		return;
+	}
+
+	if( m_origKeyTable == nullptr )
+	{
+		XCloseDisplay( display );
+		return;
+	}
 
 	XChangeKeyboardMapping( display, m_keyCodeMin, m_keySymsPerKeyCode,
 							static_cast<::KeySym *>( m_origKeyTable ), m_keyCodeCount );
@@ -100,4 +139,22 @@ void LinuxInputDeviceFunctions::restoreKeyMapTable()
 
 	XFree( m_origKeyTable );
 	m_origKeyTable = nullptr;
+}
+
+
+void LinuxInputDeviceFunctions::enableInputDevicesWayland()
+{
+	// For Wayland sessions, input device control is handled through the
+	// RemoteDesktop portal. The portal automatically manages input permissions.
+	// This is a no-op as the portal session handles input state.
+	vDebug() << "Wayland: enabling input devices via portal (no-op)";
+}
+
+
+void LinuxInputDeviceFunctions::disableInputDevicesWayland()
+{
+	// For Wayland sessions, we cannot directly disable input devices.
+	// Input control must be managed through the RemoteDesktop portal.
+	// Screen locking functionality will need to use alternative methods.
+	vDebug() << "Wayland: disabling input devices via portal (limited functionality)";
 }
