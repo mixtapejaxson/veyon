@@ -25,6 +25,7 @@
 #include <QElapsedTimer>
 #include <QFileInfo>
 #include <QDBusPendingCall>
+#include <QDBusReply>
 #include <QProcess>
 #include <QProcessEnvironment>
 #include <QScreen>
@@ -125,9 +126,26 @@ void LinuxCoreFunctions::raiseWindow( QWidget* widget, bool stayOnTop )
 }
 
 
+bool LinuxCoreFunctions::isWaylandSession()
+{
+	return QProcessEnvironment::systemEnvironment().contains( QStringLiteral("WAYLAND_DISPLAY") );
+}
+
+
 void LinuxCoreFunctions::disableScreenSaver()
 {
+	if( isWaylandSession() )
+	{
+		disableScreenSaverWayland();
+		return;
+	}
+
 	auto display = XOpenDisplay( nullptr );
+	if( display == nullptr )
+	{
+		vWarning() << "Could not open X11 display for screen saver control";
+		return;
+	}
 
 	// query and disable screen saver
 	int interval;
@@ -167,7 +185,18 @@ void LinuxCoreFunctions::disableScreenSaver()
 
 void LinuxCoreFunctions::restoreScreenSaverSettings()
 {
+	if( isWaylandSession() )
+	{
+		restoreScreenSaverSettingsWayland();
+		return;
+	}
+
 	auto display = XOpenDisplay( nullptr );
+	if( display == nullptr )
+	{
+		vDebug() << "Could not open X11 display for screen saver restoration";
+		return;
+	}
 
 	// restore screensaver settings
 	int timeout;
@@ -191,6 +220,59 @@ void LinuxCoreFunctions::restoreScreenSaverSettings()
 
 	XFlush( display );
 	XCloseDisplay( display );
+}
+
+
+void LinuxCoreFunctions::disableScreenSaverWayland()
+{
+	// For Wayland sessions, use the org.freedesktop.ScreenSaver D-Bus interface
+	// to inhibit the screen saver
+	QDBusInterface screenSaver( QStringLiteral("org.freedesktop.ScreenSaver"),
+								QStringLiteral("/org/freedesktop/ScreenSaver"),
+								QStringLiteral("org.freedesktop.ScreenSaver"),
+								QDBusConnection::sessionBus() );
+
+	if( screenSaver.isValid() )
+	{
+		QDBusReply<uint32_t> reply = screenSaver.call( QStringLiteral("Inhibit"),
+													   QStringLiteral("veyon"),
+													   QStringLiteral("Remote desktop session active") );
+		if( reply.isValid() )
+		{
+			m_screenSaverInhibitCookie = reply.value();
+			vDebug() << "Wayland: screen saver inhibited with cookie" << m_screenSaverInhibitCookie;
+		}
+		else
+		{
+			vWarning() << "Wayland: failed to inhibit screen saver:" << reply.error().message();
+		}
+	}
+	else
+	{
+		vWarning() << "Wayland: org.freedesktop.ScreenSaver interface not available";
+	}
+}
+
+
+void LinuxCoreFunctions::restoreScreenSaverSettingsWayland()
+{
+	if( m_screenSaverInhibitCookie == 0 )
+	{
+		return;
+	}
+
+	QDBusInterface screenSaver( QStringLiteral("org.freedesktop.ScreenSaver"),
+								QStringLiteral("/org/freedesktop/ScreenSaver"),
+								QStringLiteral("org.freedesktop.ScreenSaver"),
+								QDBusConnection::sessionBus() );
+
+	if( screenSaver.isValid() )
+	{
+		screenSaver.call( QStringLiteral("UnInhibit"), m_screenSaverInhibitCookie );
+		vDebug() << "Wayland: screen saver uninhibited";
+	}
+
+	m_screenSaverInhibitCookie = 0;
 }
 
 

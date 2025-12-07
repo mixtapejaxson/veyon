@@ -89,6 +89,8 @@ public:
 
 	static void restartDisplayManagers();
 
+	static bool isWaylandSession();
+
 #ifdef HAVE_LIBPROC2
 	static void forEachChildProcess(const std::function<bool(const pids_stack*)>& visitor,
 									int parentPid, const std::vector<pids_item>& items, bool visitParent);
@@ -100,11 +102,22 @@ public:
 	static bool waitForProcess( qint64 pid, int timeout, int sleepInterval );
 
 private:
+	// X11-specific screen saver methods
+	void disableScreenSaverX11();
+	void restoreScreenSaverSettingsX11();
+
+	// Wayland-specific screen saver methods
+	void disableScreenSaverWayland();
+	void restoreScreenSaverSettingsWayland();
+
 	int m_screenSaverTimeout{0};
 	int m_screenSaverPreferBlanking{0};
 	bool m_dpmsEnabled{false};
 	unsigned short m_dpmsStandbyTimeout{0};
 	unsigned short m_dpmsSuspendTimeout{0};
 	unsigned short m_dpmsOffTimeout{0};
+
+	// Wayland screen saver inhibit cookie
+	uint32_t m_screenSaverInhibitCookie{0};
 
 };

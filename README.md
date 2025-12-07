@@ -63,6 +63,7 @@ Requirements for Debian-based distributions:
 - Build tools: g++ libc6-dev make cmake dpkg-dev
 - Qt5: qtbase5-dev qtbase5-private-dev qtbase5-dev-tools qttools5-dev qttools5-dev-tools
 - X11: xorg-dev libxtst-dev libfakekey-dev
+- Wayland (optional): libpipewire-0.3-dev (for Wayland screen capture support)
 - libjpeg: libjpeg-dev provided by libjpeg-turbo8-dev or libjpeg62-turbo-dev
 - zlib: zlib1g-dev
 - OpenSSL: libssl-dev
@@ -81,6 +82,9 @@ As root you can run
 	            libprocps-dev liblzo2-dev libqca-qt5-2-dev libldap2-dev \
 	            libsasl2-dev
 
+For Wayland support, additionally install:
+
+	apt install libpipewire-0.3-dev
 
 
 Requirements for RedHat-based distributions:
